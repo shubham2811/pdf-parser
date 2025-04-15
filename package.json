@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "pdf-parse": "^1.1.1",
+    "pdf2json": "^3.0.5",
+    "pdfjs-dist": "^4.9.124",
+    "pdfreader": "^3.0.2",
+    "word-extractor": "^1.0.4"
+  },
+  "type": "commonjs"
+}
