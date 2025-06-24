@@ -10,7 +10,7 @@ async function extractWordsWithPageAndLine(pdfPath) {
 
     const result = [];
     const pages = data.text.split("\n\n"); // Pages are separated by a form feed character (\f)
-    const stopWords = ["is", "a", "the", "है", "के", "ये", "एक"];
+
     pages.forEach((pageContent, pageIndex) => {
       const lines = pageContent.split("\n"); // Split each page into lines
       lines.forEach((lineContent, lineIndex) => {
@@ -18,8 +18,6 @@ async function extractWordsWithPageAndLine(pdfPath) {
         words.forEach((word) => {
           // Remove special characters
           const cleanedWord = word.replace(/[^\p{L}]/gu, "");
-          // Lowercase for comparison (optional)
-          const wordLower = cleanedWord.toLowerCase();
           if (cleanedWord && cleanedWord.length > 3) {
             result.push({
               word: word,
