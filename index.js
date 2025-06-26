@@ -35,6 +35,17 @@ async function extractWordsWithPageAndLine(pdfPath) {
   }
 }
 
+const groupByWords = (result) => {
+  const output = {};
+  result.forEach(({ word, page, line }) => {
+    if (!output[word]) {
+      output[word] = [];
+    }
+    output[word].push({ page, line });
+  });
+  return output;
+};
+
 // Main function to process the PDF and save the output
 (async function () {
   const pdfPath = "Lecturesonvedanta.pdf"; // Replace with your PDF file path
@@ -44,6 +55,11 @@ async function extractWordsWithPageAndLine(pdfPath) {
     const outputPath = "word_data.json";
     fs.writeFileSync(outputPath, JSON.stringify(wordsData, null, 2));
     console.log(`Word data has been saved to ${outputPath}`);
+
+    const gpBywordsPath = "group_words.json";
+    const gpBywords = groupByWords(wordsData);
+    fs.writeFileSync(gpBywordsPath, JSON.stringify(gpBywords, null, 2));
+    console.log(`group by words has been saved to ${gpBywordsPath}`);
   } catch (error) {
     console.error("Error processing PDF:", error);
   }
